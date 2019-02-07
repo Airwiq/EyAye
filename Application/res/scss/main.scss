@@ -1,0 +1,201 @@
+
+//body {
+//    background-color: #0b1519;
+//    color: #e1e1e3;
+//    font-family: Tahoma;
+//    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+//}
+//
+//form {
+//    width: 400px;
+//}
+//
+//fieldset {
+//    border: 1px solid #97a8b8;
+//}
+//
+//fieldset legend {
+//    text-transform: uppercase;
+//}
+//
+//fieldset div {
+//    display: grid;
+//    grid-gap: 5px;
+//    grid-template-columns: auto auto;
+//}
+//
+//fieldset div label {
+//    text-transform: uppercase;
+//    grid-column: 1;
+//}
+//
+//fieldset div input {
+//    grid-column: 2;
+//}
+//
+//input:focus {
+//    outline: 0;
+//    box-shadow: 0px 0px 1px 1px #F7F084;
+//}
+//
+//input[type="text"] {
+//    background-color: transparent;
+//    padding: 5px;
+//    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+//    /*color: #244871;*/
+//    color: #e1e1e3;
+//    font-weight: 900;
+//    border-radius: 5px;
+//    border: 2px solid #F7F084;
+//    font-size: 1em;
+//}
+//input::selection{          
+//    background-color: #FFFFFF;
+//    color: #0b1519;
+//}
+
+$jb-col-bg: #060606;
+$jb-col-fg: #101217;
+$jb-col-red: #ec2d30;
+$jb-col-pink: #f4148e;
+$jb-col-blue: #008cf1;
+$jb-col-purple: #525efe;
+$jb-col-gray: #2e3338;
+$jb-col-hgray: #97a8b8;
+$jb-col-white: #e1e1e3;
+
+$limb-col-base: #808080;//#0E3389;// #2D35BB;
+$limb-col-window: #505050;//#223767;
+$limb-col-window-title: #a8a8a8;
+$limb-col-window-navbar: #303030;
+$limb-col-text-normal: #16161d;
+
+@font-face{
+    font-family: 'BlackOPs';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/BlackOpsOne/BlackOpsOne-Regular.ttf') format('truetype');    
+}
+
+@font-face{
+    font-family: 'Orbitron';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/Orbitron/orbitron-light.otf') format('opentype');
+}
+
+@font-face{
+    font-family: 'SquadaOne';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/SquadaOne/SquadaOne-Regular.ttf') format('opentype');
+}
+
+
+
+@font-face { 
+    font-family: 'FA';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/FontAwesome/fa-solid-900.ttf') format('truetype'); 
+}
+.fa,
+.fas {
+  font-family: 'FA';
+  font-weight: 900; 
+}
+html,body{    
+    width: 100%;
+    height:100%;
+    margin: 0;
+    font-family: 'SquadaOne';
+    color: $limb-col-text-normal;
+}
+body{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+*{
+    user-select: none;
+}
+.vw-Frame{    
+    display: grid;
+    overflow: hidden;    
+    background-color: #dddddd;
+    grid-template-columns: 75px auto; 
+    .vw-FrameNavbar{
+        grid-column: 1;
+        background-color: $limb-col-base;
+        //&:hover + .vw-FrameContext{
+        //    background-color: #ffffff;
+        //}
+    }
+    .vw-FrameContext{
+        display: none;                
+        position: absolute;
+        width: 325px;
+        height: auto;
+        left: 100px; 
+        top:0px;
+        bottom: 0px;       
+        border-right: 1px solid black;                
+        &[active]{
+            display: block;
+        }
+        
+    }
+    .vw-FrameContent{
+        display: none;
+        grid-column: 2;
+        overflow: auto;
+        background-color: $limb-col-base;
+        &[active]{
+            display: block;
+        }
+    }
+}
+.vw-Stage{
+    //height: 100%;
+    //width: 100%;  
+    
+    display: grid;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    grid-template-rows: auto;    
+    &[titled]{
+        grid-template-rows: 32px auto;                
+        //margin: 4px;
+        border: 1px solid #000000;
+        padding: 0px;
+        //border-radius: 1px;
+        //box-shadow: 0px 0px 5px 1px #000000;
+        background-color: $limb-col-window;
+    }
+    .vw-StageTitlebar{
+        -webkit-app-region: drag;        
+        text-overflow: ellipsis;
+        overflow: hidden;   
+        white-space: nowrap;     
+        color: $limb-col-window-title;       
+        background-color: $limb-col-window;
+        &+.vw-Frame{
+            border: 1px solid black;
+            .vw-FrameContext{
+                top: 32px;
+            }
+        } 
+    }       
+}
