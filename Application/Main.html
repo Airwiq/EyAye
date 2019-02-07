@@ -15,46 +15,8 @@
 <body>
 </body>
 <script>        
-    class Renderer {
-        constructor(canvas) {
-            this.height = canvas.height;
-            this.width = canvas.width;
-            this.canvas = canvas;
-            this.gfx = this.canvas.getContext('2d');
-        }
-        clear() {
-            this.fillRect(0, 0, this.width, this.height,'#ddeedd');
-        }
-        strokeCircle(x, y, r, color = '#000000', width = 1) {
-            this.gfx.lineWidth = width;
-            this.gfx.strokeStyle = color;
-            this.gfx.beginPath();
-            this.gfx.arc(x, y, r, 0, 2 * Math.PI);
-            this.gfx.closePath();
-            this.gfx.stroke();
-        }
-        fillRect(x, y, w, h, color = '#000000') {
-            this.gfx.fillStyle = color;
-            this.gfx.fillRect(x, y, w, h);
-        }
-        fillCircle(x, y, r, color = '#000000') {
-            this.gfx.fillStyle = color;
-            this.gfx.beginPath();
-            this.gfx.arc(x, y, r, 0, 2 * Math.PI);
-            this.gfx.closePath();
-            this.gfx.fill();
-            this.gfx.end
-        }
-    }
-    class Scene {
-        constructor(width, height) {
-            this.canvas = document.createElement('canvas');
-            this.canvas.width = width;
-            this.canvas.height = height;
-            this.renderer = new Renderer(this.canvas);
-            document.body.appendChild(this.canvas);
-        }
-    }
+    const engine = require('./src/engine');
+    const MainLooper = engine.MainLooper;
 
     class Entity {
         constructor(x, y, width, height, rotation = 0) {
@@ -63,7 +25,8 @@
             this.y = y;
             this.width = width;
             this.height = height;
-            this.rotation = rotation;            
+            this.rotation = rotation;      
+            this.velocity = 0;      
             this.signature = `rgb(${(this.id >> 16 & 0xFF)},${(this.id >> 8 & 0xFF)},${(this.id >> 0 & 0xFF)})`;
             Entity.addInstance(this);
         }
@@ -91,38 +54,7 @@
         }
     }
 
-    class MainLooper {
-        constructor(width, height) {
-            this.scene = new Scene(width, height);
-            this.time = 0;
-        }
-        init() {
-
-        }
-        start() {
-            this.time = new Date().getTime();
-            this.interval = setInterval(this.loop.bind(this), 20);
-            this.dummy = new Entity(50,50,20,20);
-        }
-        update(delta) {
-            this.delta = delta;
-        }
-        render(gfx) {
-            gfx.clear();
-            let diff = this.delta / 1000;
-            let v = 10 * diff;
-            this.dummy.x += v;
-            this.dummy.render(gfx);
-
-        }
-        loop() {
-            this.delta = new Date().getTime() - this.time;
-            this.time = new Date().getTime();
-            this.update(this.delta);
-            this.render(this.scene.renderer);
-            //clearInterval(this.interval);
-        }
-    }        
+            
 </script>
 <script>
     new MainLooper(window.innerWidth - 20, window.innerHeight - 20).start();    

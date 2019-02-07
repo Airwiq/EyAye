@@ -5,8 +5,7 @@ class MainWindow extends Electron.BrowserWindow{
     constructor({file,...settings}){
         super({...{width: 1000, height: 600, show: false}, ...settings});
         this.loadFile(file);
-        this.setMenu(null);
-        this.webContents.openDevTools();
+        this.setMenu(null);        
         this.once('ready-to-show', this.show);        
     }    
 }
