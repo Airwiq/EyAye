@@ -6,7 +6,7 @@ class Renderer {
         this.gfx = this.canvas.getContext('2d');
     }
     clear() {
-        this.fillRect(0, 0, this.width, this.height,'#ddeedd');
+        this.fillRect(0, 0, this.width, this.height,'#ffffff');
     }
     strokeCircle(x, y, r, color = '#000000', width = 1) {
         this.gfx.lineWidth = width;

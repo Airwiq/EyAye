@@ -9,7 +9,7 @@ class MainLooper {
     }
     start() {
         this.time = new Date().getTime();
-        this.interval = setInterval(this.loop.bind(this), 20);
+        this.interval = setInterval(this.loop.bind(this), 10);
         this.dummy = new Entity(50,50,20,20);
     }
     update(delta) {
