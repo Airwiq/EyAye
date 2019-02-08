@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.14.1/dist/tf.min.js"></script>
+    <style>
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid #808080;
+            border-collapse: collapse;
+        }
+
+        dialog {
+            border: 1px solid #808080;
+            position: fixed;
+            max-width: 400px;
+            right: 5px;
+            top: 5px;
+        }
+
+        canvas {
+            border: 1px solid #808080;
+        }
+    </style>
+</head>
+
+<body>
+    <dialog id=nxRES>
+
+    </dialog>
+    <canvas id=nxCVS width="1000" height="200">
+
+    </canvas>
+    <details style="display: none;">
+        <summary>Textarea Test</summary>
+        <textarea id=nxINPUT rows="10" cols="50"></textarea>
+        <br>
+        <input type="button" value="Run" onclick="runTextArea()">
+        <br>
+    </details>
+    <br>
+    <details>
+        <summary>Trainings Data</summary>
+        <table id=nxDATA>
+            <tr>
+                <th>Source</th>
+                <th>Label</th>
+            </tr>
+        </table>
+    </details>
+    <br>
+    <details open>
+        <summary>Testing Data</summary>
+        <table id=nxTEST>
+            <tr>
+                <th>Source</th>
+                <th>Label</th>
+            </tr>
+        </table>
+    </details>
+</body>
+<script>
+    var rawData = [
+        { src: 'Apfel', lbl: 'Apfel' },
+        { src: 'Dieser Satz dreht sich um einen Apfel.', lbl: 'Apfel' },
+        { src: 'Um den Apfel geht es auch hier wieder.', lbl: 'Apfel' },
+        { src: 'Was gäbe ich nur für einen Apfel.', lbl: 'Apfel' },
+        { src: 'Apfel ist ein tolles Wort.', lbl: 'Apfel' },
+        { src: 'Ein Apfel ist aber auch ganz toll.', lbl: 'Apfel' },
+
+        { src: 'Birne', lbl: 'Birne' },
+        { src: 'Birnen sind aber auch ganz toll.', lbl: 'Birne' },
+        { src: 'Wieder ein Satz über eine Birne.', lbl: 'Birne' },
+        { src: 'Um die Birne geht es auch hier wieder.', lbl: 'Birne' },
+        { src: 'Dieser Satz dreht sich um eine Birne.', lbl: 'Birne' },
+        { src: 'Was gäbe ich nur für eine Birne.', lbl: 'Birne' },
+        { src: 'Brauche mehr Sätze mit Birne drin.', lbl: 'Birne' },
+        { src: 'Es sollte Birne in der Mitte stehen.', lbl: 'Birne' },
+
+        { src: 'ApfelBirne', lbl: 'Apfel/Birne' },
+        { src: 'BirneApfel', lbl: 'Apfel/Birne' },
+        { src: 'Dieser Satz dreht sich um eine Birne und einen Apfel.', lbl: 'Apfel/Birne' },
+        { src: 'Auch in diesem Satz kommt ein Apfel und eine Birne vor.', lbl: 'Apfel/Birne' },
+
+       //{ src: '', lbl: '?'},
+       //{ src: 'Ohne den gesuchten Kontext', lbl: '?'},
+       //{ src: 'Auch in diesem Satz gibt es kein Ziel', lbl: '?'}
+    ];
+    var rawTestData = [
+        { src: 'Zum Test für den Apfel denn der ist toll.', lbl: 'Apfel' },
+        { src: 'Auto die Birne soll getestet werden.', lbl: 'Brine' },
+        { src: 'Ein Text mit Birne und Apfel vielleicht klappts.', lbl: 'Apfel/Birne' },
+        { src: 'Fick dich fick dich Apfel.', lbl: 'Apfel' }
+    ];
+    var rawLabels = ['Apfel', 'Birne'];
+    for (let i = 0, itm; itm = rawData[i]; i++) {
+        nxDATA.innerHTML += `<tr><td>${itm.src}</td><td>${itm.lbl}</td></tr>`;
+    }
+</script>
+<script>    
+    const epochs = 200;
+    const increment = 10/(1000);
+    const inputSize = 60;
+    const outputSize = rawLabels.length;
+
+    function phoneticSequence(text, len = 0, compress = true) {
+        let c = [
+            { regex:/\W/gm, value: 1},
+            { regex:/[aeiouäöüyjh]/gm, value: 2},
+            { regex:/[bpfvw]/gm, value: 3},
+            { regex:/[cgkqxszß]/gm, value: 4},
+            { regex:/[dt]/gm, value: 5},
+            { regex:/[l]/gm, value: 6},
+            { regex:/[mn]/gm, value: 7},
+            { regex:/[r]/gm, value: 8},
+            { regex:/[ch]/gm, value: 9}
+        ];
+        text = text.toLowerCase();
+        for (let i = 0, rx; rx = c[i]; i++) {
+            if(compress){
+                text = text.replace(rx.regex, '_!_').replace(/(_\!_)+/gm, rx.value);
+            }else{
+                text = text.replace(rx.regex, rx.value);
+            }
+        }
+        if(len > 0){
+            let f = 0;
+            while(text.length < len){
+                if(f++ % 2 == 0){
+                    text = '0'.concat(text);
+                }else{
+                    text = text.concat(0);
+                }
+            }
+        }
+        console.log(text);
+        return text;
+    }
+    function prepareData(rawData) {
+        var ret = [];
+        for (let i = 0, itm; itm = rawData[i]; i++) {
+            itm.seq = [];
+            itm.sdx = phoneticSequence(itm.src, inputSize, false);
+            for (let c = 0, chr; chr = itm.sdx[c]; c++) {
+                itm.seq.push(parseInt(chr));
+            }
+            let m = 0;
+            while (itm.seq.length < inputSize) {
+                if (m++ % 2 == 0) {
+                    itm.seq.push(0);
+                } else {
+                    itm.seq = [0].concat(itm.seq);
+                }
+            }
+            itm.seq.length = inputSize;
+            ret.push(itm);
+        }
+        return ret;
+    }        
+</script>
+
+<script>
+    const dataset = prepareData(rawData);
+    const testset = prepareData(rawTestData);
+    const training = tf.tensor2d(dataset.map(itm => itm.seq));
+    const labels = tf.tensor2d(dataset.map(itm => {
+        let ret = [];
+        for (let i = 0, lbl; lbl = rawLabels[i]; i++) {
+            ret.push(itm.lbl.includes(lbl) ? 1 : 0);
+        }
+        return ret;
+    }));
+
+    const test = tf.tensor2d(testset.map(itm => itm.seq));
+    const model = tf.sequential();
+    
+    model.add(tf.layers.dense({
+        inputShape: [inputSize],
+        activation: 'sigmoid',
+        units: inputSize * 2
+    }));
+    model.add(tf.layers.dense({
+        inputShape: [inputSize * 2],
+        activation: 'sigmoid',
+        units: inputSize * 2
+    }));
+    model.add(tf.layers.dense({
+        inputShape: [inputSize * 2],
+        activation: 'sigmoid',
+        units: inputSize * 2
+    }));
+    model.add(tf.layers.dense({
+        inputShape: [inputSize * 2],
+        activation: 'sigmoid',
+        units: outputSize
+    }));
+
+
+    model.compile({
+        loss: function (labels, prediction) {                          
+            const error = prediction.sub(labels).square().mul(tf.scalar(2)).mean();
+            //error.print();
+            return error;
+        },
+        optimizer: tf.train.adam(increment)
+    });
+
+
+    model.fit(training, labels, { epochs: epochs }).then(history => {
+        printHistory(history);
+        for (let i = 0, itm; itm = rawTestData[i]; i++) {
+            nxTEST.innerHTML += `<tr><td onclick="runTest(${i})">${itm.src}</td><td>${itm.lbl}</td></tr>`;
+        }
+    });
+</script>
+
+<script>
+    function runTest(index) {
+        tf.tidy(() => {
+            let example = tf.tensor2d([testset[index].seq]);
+            let result = model.predict(example).dataSync();
+
+            let rows = '';
+            for (let i = 0, lbl; lbl = rawLabels[i]; i++) {
+                rows += `<tr><td>${lbl}</td><td><progress value="${result[i] * 100}" max="100"></progress></td><td>${(result[i] * 100).toFixed(2)}</td></tr>`;
+            }
+
+            let cnt = `
+            <b>${testset[index].lbl}</b>
+            <br>
+            <i>${testset[index].src}</i>
+            <br>
+            <table>
+                ${rows}
+            </table>`;
+            nxRES.innerHTML = cnt;
+            nxRES.setAttribute('open', '');
+        });
+    }
+    function runTextArea(){
+        tf.tidy(() => {
+            let data = prepareData([{src: nxINPUT.value, lbl:'?'}])[0];
+            let example = tf.tensor2d([data.seq]);
+            let result = model.predict(example).dataSync();
+
+            let rows = '';
+            for (let i = 0, lbl; lbl = rawLabels[i]; i++) {
+                rows += `<tr><td>${lbl}</td><td><progress value="${result[i] * 100}" max="100"></progress></td><td>${(result[i] * 100).toFixed(2)}</td></tr>`;
+            }
+
+            let cnt = `
+            <b>TextArea Input</b>
+            <br>
+            <i>${data.src}</i>
+            <br>
+            <table>
+                ${rows}
+            </table>`;
+            nxRES.innerHTML = cnt;
+            nxRES.setAttribute('open', '');
+        });
+    }
+    
+    function printHistory(hist) {
+        let steps = hist.history.loss;
+        nxCVS.setAttribute('width',epochs);
+        var ctx = nxCVS.getContext("2d");        
+        for (let i = 0, loss; loss = hist.history.loss[i]; i++) {
+
+            ctx.strokeStyle = "#00CC00";
+
+            ctx.moveTo(i, nxCVS.height);
+            ctx.lineTo(i, nxCVS.height - (loss * 100000));
+            ctx.stroke();
+        }
+    }
+</script>
+
+</html>

@@ -4,7 +4,8 @@ const Electron = require('electron');
 class MainWindow extends Electron.BrowserWindow{
     constructor({file,...settings}){
         super({...{width: 1000, height: 600, show: false}, ...settings});
-        this.loadFile(file);            
+        this.loadFile(file);    
+        this.webContents.openDevTools();        
         this.once('ready-to-show', ()=>{            
             this.show();
             this.setMenu(null);

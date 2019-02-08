@@ -1,4 +1,5 @@
 const Scene = require('./Scene');
+const Entity = require('./Entity');
 class MainLooper {
     constructor(width, height) {
         this.scene = new Scene(width, height);
@@ -10,22 +11,27 @@ class MainLooper {
     start() {
         this.time = new Date().getTime();
         this.interval = setInterval(this.loop.bind(this), 10);
-        this.dummy = new Entity(50,50,20,20);
+        this.dummyA = new Entity(50,50,20,20,3);
+        this.dummyA.velocity = 20;
+        this.dummyB = new Entity(50,50,20,20,2);
+        this.dummyB.velocity = 20;
     }
-    update(delta) {
-        this.delta = delta;
+    update(delta) {        
+        for(let i=0,arr = (Object.values(Entity.instances)),e; e = arr[i]; i++){
+            e.update(delta);
+        }
+        
     }
     render(gfx) {
         gfx.clear();
-        let diff = this.delta / 1000;
-        let v = 10 * diff;
-        this.dummy.x += v;
-        this.dummy.render(gfx);
-
+        for(let i=0,arr = (Object.values(Entity.instances)),e; e = arr[i]; i++){
+            e.render(gfx);
+        }        
     }
     loop() {
-        this.delta = new Date().getTime() - this.time;
-        this.time = new Date().getTime();
+        let t = new Date().getTime();
+        this.delta = t - this.time;
+        this.time = t;
         this.update(this.delta);
         this.render(this.scene.renderer);            
     }

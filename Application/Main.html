@@ -18,41 +18,7 @@
     const engine = require('./src/engine');
     const MainLooper = engine.MainLooper;
     
-    class Entity {
-        constructor(x, y, width, height, rotation = 0) {
-            this.id = Entity.newID();            
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-            this.rotation = rotation;      
-            this.velocity = 0;      
-            this.signature = `rgb(${(this.id >> 16 & 0xFF)},${(this.id >> 8 & 0xFF)},${(this.id >> 0 & 0xFF)})`;
-            Entity.addInstance(this);
-        }
-        static newID(){
-            if(!Entity['lastID']){
-                Entity.lastID = 100;
-            }
-            Entity.lastID += 100;            
-            return Entity.lastID;
-        }
-        static getInstances(){
-            if(!Entity['instances']){
-                Entity.instances = {};
-            }
-            return Entity.instances;
-        }
-        static addInstance(instance){            
-            Entity.getInstances()[instance.id] = instance;
-        }
-        update(delta) {
-
-        }
-        render(gfx) {
-            gfx.fillRect(this.x,this.y,this.width, this.height, this.signature);
-        }
-    }
+    
 
             
 </script>
