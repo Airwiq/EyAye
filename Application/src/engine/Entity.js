@@ -33,14 +33,23 @@ class Entity {
         }
         return Entity.instances;
     }
+    static listInstances() {
+        return Object.values(Entity.instances);
+    }
     static addInstance(instance) {
         Entity.getInstances()[instance.id] = instance;
     }
-    move(delta) {                
+    move(delta) {
         let rot = Rotations[this.rotation];
-        let distance = ((this.velocity*rot.a) * delta / 1000);        
-        this.x += (distance*rot.dx);
-        this.y += (distance*rot.dy);
+        let distance = ((this.velocity * rot.a) * delta / 1000);
+        this.x += (distance * rot.dx);
+        this.y += (distance * rot.dy);
+    }
+    turnLeft() {
+        this.rotation = this.rotation == 0 ? 7 : this.rotation - 1;
+    }
+    turnRight() {
+        this.rotation = this.rotation == 7 ? 0 : this.rotation + 1;
     }
     update(delta) {
         this.move(delta);

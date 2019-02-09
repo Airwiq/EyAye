@@ -5,26 +5,22 @@ class MainLooper {
         this.scene = new Scene(width, height);
         this.time = 0;
     }
-    init() {
-
-    }
     start() {
         this.time = new Date().getTime();
         this.interval = setInterval(this.loop.bind(this), 10);
         this.dummyA = new Entity(50,50,20,20,3);
-        this.dummyA.velocity = 20;
+        this.dummyA.velocity = 90;
         this.dummyB = new Entity(50,50,20,20,2);
-        this.dummyB.velocity = 20;
+        this.dummyB.velocity = 90;
     }
     update(delta) {        
-        for(let i=0,arr = (Object.values(Entity.instances)),e; e = arr[i]; i++){
+        for(let i=0,arr = Entity.listInstances(),e; e = arr[i]; i++){
             e.update(delta);
-        }
-        
+        }        
     }
     render(gfx) {
         gfx.clear();
-        for(let i=0,arr = (Object.values(Entity.instances)),e; e = arr[i]; i++){
+        for(let i=0,arr = Entity.listInstances(),e; e = arr[i]; i++){
             e.render(gfx);
         }        
     }
