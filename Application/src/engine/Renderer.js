@@ -25,8 +25,7 @@ class Renderer {
         this.gfx.beginPath();
         this.gfx.arc(x, y, r, 0, 2 * Math.PI);
         this.gfx.closePath();
-        this.gfx.fill();
-        this.gfx.end
+        this.gfx.fill();        
     }
 }
 module.exports = Renderer;
