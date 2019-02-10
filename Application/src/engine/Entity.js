@@ -10,7 +10,7 @@ const Rotations = [
 ]
 class Entity {
     constructor(x, y, width, height, rotation = 0) {
-        this.id = Entity.newID();        
+        this.id = Entity.newID();
         this.width = width;
         this.height = height;
         this.mx = x + width / 2;
@@ -64,16 +64,17 @@ class Entity {
         this.my = this.y + this.height / 2;
     }
     checkForCollisions(delta) {
-        let rot = Rotations[this.rotation];
-        let distance = ((this.velocity * rot.a) * delta / 1000);
-        let nx = this.mx + (distance * rot.dx);
-        let ny = this.my + (distance * rot.dy);
+
         //let wx = nx+this.width;
         //let wy = ny+this.height;
         for (let i = 0, arr = Entity.listInstances(), e; e = arr[i]; i++) {
             if (e != this) {
-                if (Math.sqrt(Math.pow((nx - e.mx), 2) + Math.pow(ny - e.my, 2)) < ((e.radius + this.radius))-1) {
-                    this.collide(e);                    
+                let rot = Rotations[this.rotation];
+                let distance = ((this.velocity * rot.a) * delta / 1000);
+                let nx = this.mx + (distance * rot.dx);
+                let ny = this.my + (distance * rot.dy);
+                if (Math.sqrt(Math.pow((nx - e.mx), 2) + Math.pow(ny - e.my, 2)) < ((e.radius + this.radius)) - 1) {
+                    this.collide(e);
                 }
 
             }
@@ -86,7 +87,8 @@ class Entity {
         this.rotation = this.rotation == 7 ? 0 : this.rotation + 1;
     }
     collide(opponent) {
-        this.velocity *= -1;        
+        this.velocity *= -0.5;
+        //this.rotation = Rotations[this.rotation].b;
     }
     update(delta) {
         this.checkForCollisions(delta);

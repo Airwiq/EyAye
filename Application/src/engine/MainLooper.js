@@ -1,5 +1,16 @@
 const Scene = require('./Scene');
 const Entity = require('./Entity');
+class BEntity extends Entity{
+    constructor(x,y,w,h){
+        super(x,y,w,h);
+    }
+    checkForCollisions(){
+
+    }
+    render(gfx){
+        gfx.fillRect(this.x, this.y, this.width, this.height, '#b97a57');
+    }
+}
 class MainLooper {
     constructor(width, height) {
         this.scene = new Scene(width, height);
@@ -10,16 +21,16 @@ class MainLooper {
         this.interval = setInterval(this.loop.bind(this), 10);
 
         for(let i = 20; i < this.scene.width; i+=20){
-            new Entity(i,0,20,20);
+            new BEntity(i,0,20,20);
         }
         for(let i = 20; i < this.scene.height; i+=20){
-            new Entity(this.scene.width-20,i,20,20);
+            new BEntity(this.scene.width-20,i,20,20);
         }
         for(let i = this.scene.width-20; i >= 0; i-=20){
-            new Entity(i,this.scene.height-20,20,20);
+            new BEntity(i,this.scene.height-20,20,20);
         }
         for(let i = this.scene.height-20; i >= -10; i-=20){
-            new Entity(0,i,20,20);
+            new BEntity(0,i,20,20);
         }
 
         this.dummyA = new Entity(100,100,20,20,3);
