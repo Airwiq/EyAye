@@ -55,6 +55,9 @@ class Entity {
             Math.pow(x, 2) + Math.pow(y, 2)
         );
     }
+    getRotationData(){
+        return Rotations[this.rotation];
+    }
     move(delta) {
         let rot = Rotations[this.rotation];
         let distance = ((this.velocity * rot.a) * delta / 1000);

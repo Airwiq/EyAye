@@ -33,7 +33,7 @@ class MainLooper {
             new BEntity(w * 0.75, b, b, h * 0.5);
         }
         this.dummyA = new LabRat(this.scene, 100, 100, 2);
-        this.dummyA.velocity = 50;
+        
         this.interval = setInterval(this.loop.bind(this), 0);
     }
     update(delta, scene) {
