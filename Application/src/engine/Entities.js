@@ -64,21 +64,31 @@ class Entity {
         this.my = this.y + this.height / 2;
     }
     checkForCollisions(delta) {
-
-        //let wx = nx+this.width;
-        //let wy = ny+this.height;
         for (let i = 0, arr = Entity.listInstances(), e; e = arr[i]; i++) {
             if (e != this) {
-                let rot = Rotations[this.rotation];
-                let distance = ((this.velocity * rot.a) * delta / 1000);
-                let nx = this.mx + (distance * rot.dx);
-                let ny = this.my + (distance * rot.dy);
-                if (Math.sqrt(Math.pow((nx - e.mx), 2) + Math.pow(ny - e.my, 2)) < ((e.radius + this.radius)) - 1) {
+                let a = this.getHitBox(delta);
+                let b = e.getHitBox(delta);
+                let d1 = (a.x1 > b.x2 || b.x1 > a.x2);
+                let d2 = (a.y1 > b.y2 || b.y1 > a.y2);
+                if (d1 || d2) {
+
+                } else {
                     this.collide(e);
                 }
-
             }
         }
+    }
+    getHitBox(delta) {
+        let rot = Rotations[this.rotation];
+        let distance = ((this.velocity * rot.a) * delta / 1000);
+        let vx = this.x + (distance * rot.dx);
+        let vy = this.y + (distance * rot.dy);
+        return {
+            x1: vx,
+            y1: vy,
+            x2: vx + this.width,
+            y2: vy + this.height
+        };
     }
     turnLeft() {
         this.rotation = this.rotation == 0 ? 7 : this.rotation - 1;
@@ -87,7 +97,7 @@ class Entity {
         this.rotation = this.rotation == 7 ? 0 : this.rotation + 1;
     }
     collide(opponent) {
-        this.velocity *= -0.5;
+        this.velocity = 0;
         //this.rotation = Rotations[this.rotation].b;
     }
     update(delta) {
@@ -101,4 +111,18 @@ class Entity {
         this.renderToShadowMap(gfx);
     }
 }
-module.exports = Entity;
+class StaticEntity extends Entity {
+    constructor(x, y, width, height, rotation = 0) {
+        super(x, y, width, height, rotation);
+    }
+    checkForCollisions(){
+
+    }
+    move(){
+
+    }
+}
+module.exports = {
+    Entity: Entity,
+    StaticEntity: StaticEntity
+};

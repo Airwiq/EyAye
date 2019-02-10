@@ -1,5 +1,6 @@
 const Renderer = require('./Renderer');
-const Entity = require('./Entity');
+const Entities = require('./Entities');
+const Entity = Entities.Entity;
 class Scene {
     constructor(width, height) {
         this.width = width;
