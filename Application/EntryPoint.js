@@ -14,7 +14,11 @@ class MainWindow extends Electron.BrowserWindow{
 }
 
 (function(){
-    Electron.app.on('ready', ()=> new MainWindow({file:'./Application/Main.html'}));
+    Electron.app.commandLine.appendSwitch('js-flags', '--max-old-space-size=4096');
+    Electron.app.on('ready', ()=> {
+        
+        new MainWindow({file:'./Application/Main.html'});
+    });
     Electron.app.on('window-all-closed', Electron.app.quit);
 })();
 /*

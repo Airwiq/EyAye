@@ -1,14 +1,15 @@
 const Scene = require('./Scene');
 const Entities = require('./Entities');
 const Entity = Entities.Entity;
-class BEntity extends Entity{
-    constructor(x,y,w,h){
-        super(x,y,w,h);
+const LabRat = require('./../objects/LabRat');
+class BEntity extends Entity {
+    constructor(x, y, w, h) {
+        super(x, y, w, h);
     }
-    checkForCollisions(){
+    checkForCollisions() {
 
     }
-    render(gfx){
+    render(gfx) {
         gfx.fillRect(this.x, this.y, this.width, this.height, '#b97a57');
     }
 }
@@ -19,34 +20,34 @@ class MainLooper {
     }
     start() {
         this.time = new Date().getTime();
-        this.interval = setInterval(this.loop.bind(this), 10);
+
         {
             let w = this.scene.width;
             let h = this.scene.height;
-            new BEntity(0,0,w,10);
-            new BEntity(0,h-10,w,10);
-            new BEntity(0,10,10,h-20);
-            new BEntity(w-10,10,10,h-20);
+            let b = 20;
+            new BEntity(0, 0, w, b);
+            new BEntity(0, h - b, w, b);
+            new BEntity(0, b, b, h - 2 * b);
+            new BEntity(w - b, b, b, h - 2 * b);
+
+            new BEntity(w * 0.75, b, b, h * 0.5);
         }
-        this.dummyA = new Entity(100,100,20,20,3);
-        this.dummyA.velocity = 90;
-        this.dummyB = new Entity(100,200,20,20,2);
-        this.dummyB.velocity = 90;
+        this.dummyA = new LabRat(this.scene, 100, 100, 2);
+        this.dummyA.velocity = 50;
+        this.interval = setInterval(this.loop.bind(this), 0);
     }
-    update(delta) {        
-        for(let i=0,arr = Entity.listInstances(),e; e = arr[i]; i++){
-            e.update(delta);
-        }        
+    update(delta, scene) {
+        scene.update(delta);
     }
     render(scene) {
-        scene.render();    
+        scene.render();
     }
     loop() {
         let t = new Date().getTime();
-        this.delta = t - this.time;
+        this.delta = 10;//t - this.time;
         this.time = t;
-        this.update(this.delta);
-        this.render(this.scene);            
+        this.update(this.delta, this.scene);
+        this.render(this.scene);
     }
 }
 module.exports = MainLooper;

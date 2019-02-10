@@ -1,5 +1,5 @@
 {
-  "esm-init": "npm install --save-dev electron",
+  "eyaye-init": "npm install --save-dev electron; npm install @tensorflow/tfjs-node;",
   "name": "esm",
   "version": "0.1.0",
   "main": "Application/EntryPoint.js",
@@ -20,6 +20,8 @@
     "windows-build-tools": "^5.0.0"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^0.15.1",
+    "@tensorflow/tfjs-node": "^0.3.0",
     "sqlite3": "^4.0.4"
   },
   "description": ""
