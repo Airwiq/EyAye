@@ -9,18 +9,25 @@
         body {
             margin: 0px;
         }
+        canvas{
+            border: 1px solid black;
+        }
     </style>
 </head>
 
 <body>
-        <img src="./res/img/chicken_6.png">
+    <input type="button" value="Start" onclick="run()">
+        <img src="./res/img/chicken_6.png">        
 </body>
 <script>        
     const engine = require('./src/engine');
     const MainLooper = engine.MainLooper;            
 </script>
 <script>
-    new MainLooper(500,300).start();    
+    var Looper = new MainLooper(500,300);    
+    function run(){
+        Looper.start();
+    }
 </script>
 
 

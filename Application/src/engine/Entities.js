@@ -9,10 +9,12 @@ const Rotations = [
     { b: 1, a: 0.7071, dx: -1, dy: -1 }
 ]
 class Entity {
-    constructor(x, y, width, height, rotation = 0) {
+    constructor(world, x, y, width, height, rotation = 0, caged = false) {
+        this.world = world;
         this.id = Entity.newID();
         this.width = width;
         this.height = height;
+        this.caged = caged;
         this.mx = x + width / 2;
         this.my = y + height / 2;
         this.x = x;
@@ -48,25 +50,30 @@ class Entity {
             Math.pow(entity.width, 2) + Math.pow(entity.height, 2)
         ) / 2;
     }
-    static getDistance(entity1, entity2) {
+    static getSpaceBetween(entity1, entity2) {
         let x = entity1.mx - entity2.mx;
         let y = entity1.my - entity2.my;
         return Math.sqrt(
             Math.pow(x, 2) + Math.pow(y, 2)
         );
     }
+    static getDistance(x1,y1,x2,y2){       
+        return Math.sqrt(
+            Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
+        );
+    }
     getRotationData(){
         return Rotations[this.rotation];
     }
-    move(delta) {
+    changePosition(delta) {
         let rot = Rotations[this.rotation];
-        let distance = ((this.velocity * rot.a) * delta / 1000);
+        let distance = ((this.velocity * rot.a) * delta / 1000);        
         this.x += (distance * rot.dx);
-        this.y += (distance * rot.dy);
+        this.y += (distance * rot.dy);                
         this.mx = this.x + this.width / 2;
         this.my = this.y + this.height / 2;
     }
-    checkForCollisions(delta) {
+    checkForCollisions(delta) {        
         for (let i = 0, arr = Entity.listInstances(), e; e = arr[i]; i++) {
             if (e != this) {
                 let a = this.getHitBox(delta);
@@ -78,6 +85,12 @@ class Entity {
                 } else {
                     this.collide(e);
                 }
+            }
+        }
+        if(this.caged){
+            let h = this.getHitBox(delta);
+            if(h.x1 < 0 || h.x2 > this.world.width || h.y1 < 0 || h.y2 > this.world.height){
+                this.collide(null);
             }
         }
     }
@@ -105,7 +118,7 @@ class Entity {
     }
     update(delta) {
         this.checkForCollisions(delta);
-        this.move(delta);
+        this.changePosition(delta);
     }
     renderToShadowMap(gfx) {
         gfx.fillRect(this.x, this.y, this.width, this.height, this.signature);
@@ -118,10 +131,10 @@ class StaticEntity extends Entity {
     constructor(x, y, width, height, rotation = 0) {
         super(x, y, width, height, rotation);
     }
-    checkForCollisions(){
+    checkForCollisions(delta){
 
     }
-    move(){
+    changePosition(delta){
 
     }
 }

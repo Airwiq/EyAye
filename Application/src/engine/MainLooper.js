@@ -1,10 +1,10 @@
 const Scene = require('./Scene');
 const Entities = require('./Entities');
 const Entity = Entities.Entity;
-const LabRat = require('./../objects/LabRat');
+const Carl = require('./../objects/Carl');
 class BEntity extends Entity {
-    constructor(x, y, w, h) {
-        super(x, y, w, h);
+    constructor(world, x, y, w, h) {
+        super(world, x, y, w, h, 0, false);
     }
     checkForCollisions() {
 
@@ -25,15 +25,31 @@ class MainLooper {
             let w = this.scene.width;
             let h = this.scene.height;
             let b = 20;
-            new BEntity(0, 0, w, b);
-            new BEntity(0, h - b, w, b);
-            new BEntity(0, b, b, h - 2 * b);
-            new BEntity(w - b, b, b, h - 2 * b);
+            new BEntity(this.scene, 0, 0, w, b);
+            new BEntity(this.scene, 0, h - b, w, b);
+            new BEntity(this.scene, 0, b, b, h - 2 * b);
+            new BEntity(this.scene, w - b, b, b, h - 2 * b);
 
-            new BEntity(w * 0.75, b, b, h * 0.5);
+            new BEntity(this.scene, w * 0.75, b, b, h * 0.5);
         }
-        this.dummyA = new LabRat(this.scene, 100, 100, 2);
-        
+        let carl = new Carl(this.scene, 110, 110, 2);
+        document.onkeydown = (e) => {
+            e = e || window.event;
+            if (e.keyCode == '38') {
+                // up arrow
+                carl.move();
+            }
+            else if (e.keyCode == '40') {
+                // down arrow
+            }
+            else if (e.keyCode == '37') {
+                carl.turnLeft();
+            }
+            else if (e.keyCode == '39') {
+                carl.turnRight();
+            }
+
+        };
         this.interval = setInterval(this.loop.bind(this), 0);
     }
     update(delta, scene) {
@@ -44,7 +60,7 @@ class MainLooper {
     }
     loop() {
         let t = new Date().getTime();
-        this.delta = 10;//t - this.time;
+        this.delta = t - this.time;
         this.time = t;
         this.update(this.delta, this.scene);
         this.render(this.scene);

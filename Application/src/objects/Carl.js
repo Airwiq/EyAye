@@ -1,9 +1,8 @@
-const ai = require('../ai/Carl');
-const BasicAI = ai.BasicAI;
+
 const Entity = require('./../engine/Entities').Entity;
-class LabRat extends Entity {
+class Chicken extends Entity {
     constructor(scene, x, y, rotation = 0) {
-        super(x, y, 24, 24, rotation);
+        super(scene,x, y, 32, 32, rotation, true);
         this.range = 256;
         this.halfRange = this.range / 2;
         this.scene = scene;
@@ -17,10 +16,9 @@ class LabRat extends Entity {
         this.keyframe = 1;
         this.lastFrame = 0;
         this.score = 0;
-        this.ai = new BasicAI(this, this.range);
+
     }
     getSensorInput(delta) {
-        //this.cvs.fillRect(0, 0,ax, ay, '#ffffff');
         try {
             let cvs = this.sensor.getContext('2d');
             let ctx = this.world.getContext('2d');
@@ -42,20 +40,7 @@ class LabRat extends Entity {
             cvs.lineTo(this.halfRange + (rot.dx * 16 * rot.a), this.halfRange + (rot.dy * 16 * rot.a));
             cvs.stroke();
 
-            this.ai.run(cvs.getImageData(0, 0, this.range, this.range), delta, this.callbackUpdate.bind(this));
-            /*
-                Okay das Konzept ist Bullshit...
-                Der Optimizer und alles andere müssen hier rein!
-                Auch muss noch die Geschwindigkeit in das Bild kodiert werden,
-                sodass er sich daran orientieren kann!
-                TODO:
-                Carl.js hier mit fusionieren und dann weiter gehen...
-                Braucht man das Model nur zum Speichern ?!?
-                Und wie kann man den dämlichen no connections Fehler ausbügeln..
-                Wenn das nicht klappt muss Carl doch erstmal ferngesteuert und
-                die Frames mit gelogt werden...
-                Ach so ein Fick he 
-            */
+            this.sensordata = cvs.getImageData(0, 0, this.range, this.range);            
         } catch (err) {
             console.log(err);
         }
@@ -64,37 +49,36 @@ class LabRat extends Entity {
         if (!this.cnt) {
             this.cnt = 0;
         }
-        if (this.cnt++ > 10) {
+        if (this.cnt++ > 1) {
             this.score += 5 * this.velocity;
             this.getSensorInput(delta);
-        }
+            super.update(delta);
 
-    }
-    callbackUpdate(delta) {
-        super.update(delta);
-
-        if (this.lastFrame > 150) {
-            if (this.velocity != 0) {
-                this.keyframe--;
-                if (this.keyframe < 0) {
-                    this.keyframe = 2;
+            if (this.lastFrame > 150) {
+                if (this.velocity != 0) {
+                    this.keyframe--;
+                    if (this.keyframe < 0) {
+                        this.keyframe = 2;
+                    }
+                } else {
+                    this.keyframe = 1;
                 }
-            } else {
-                this.keyframe = 1;
+                this.lastFrame = 0;
             }
-            this.lastFrame = 0;
+            this.lastFrame += delta;
         }
-        this.lastFrame += delta;
+
     }
     collide(opponent) {
         //let d = Math.floor(Math.random() * (7 - 0 + 1)) + 0;
-        //this.rotation = d;
-        this.score -= 10 * this.velocity;
+        //this.rotation = d;        
         this.velocity = 0;
+        //this.score -= 10 * this.velocity;
+        //this.velocity = 0;
 
     }
     render(gfx) {
-        //gfx.fillCircle(this.mx,this.my,this.width/2, '#00a2e8');       
+        gfx.fillCircle(this.mx,this.my,this.width/2, '#00a2e8');       
         let r = this.rotation;
         let ox = 32 * this.keyframe, oy;
         if (r == 0) { oy = 0; }
@@ -102,17 +86,64 @@ class LabRat extends Entity {
         else if (r == 4) { oy = 64; }
         else if (r >= 5 && r <= 7) { oy = 96; }
 
-        if (LabRat.Sprite) {
-            gfx.drawSprite(LabRat.Sprite, this.mx - 16, this.my - 16, 32, 32, ox, oy);
+        if (Chicken.Sprite) {
+            gfx.drawSprite(Chicken.Sprite, this.mx - 16, this.my - 16, 32, 32, ox, oy);
         }
 
     }
 }
 
-module.exports = LabRat;
+const Actions = {
+    NONE: 0,
+    MOVE: 1,
+    LEFT: 2,
+    RIGHT: 3
+};
+class Carl extends Chicken{
+    constructor(scene, x, y, rotation = 0){
+        super(scene,x,y,rotation);
+        this.tx = this.mx;
+        this.ty = this.mx; 
+        this.speed = this.width;   
+        this.stepsize = this.width;  
+        this.action = Actions.NONE;
+    }
+    collide(opponent){
+        super.collide(opponent);  
+        this.stop();              
+    }
+    stop(){
+        this.tx = this.mx;
+        this.ty = this.my;
+        this.velocity = 0;
+    }
+    move(){        
+        let rot = this.getRotationData();
+        this.tx = this.mx + (rot.dx*this.stepsize);
+        this.ty = this.my + (rot.dy*this.stepsize);
+        this.velocity = this.speed;
+    }
+    turnLeft(){
+        this.stop();        
+        super.turnLeft();
+    }
+    turnRight(){
+        this.stop();
+        super.turnRight();
+    }
+    changePosition(delta){
+        if(Entity.getDistance(this.mx,this.my,this.tx,this.ty) < 0.25){
+            this.stop();
+        }
+        super.changePosition(delta);
+    }
+}
+
+
+module.exports = Carl;
 
 var img = new Image();
 img.onload = function () {
-    LabRat.Sprite = img;
+    Chicken.Sprite = img;
 }
 img.src = './res/img/chicken_6.png';
