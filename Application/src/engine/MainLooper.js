@@ -31,6 +31,7 @@ class MainLooper {
             new BEntity(this.scene, w - b, b, b, h - 2 * b);
 
             new BEntity(this.scene, w * 0.75, b, b, h * 0.5);
+            new BEntity(this.scene, 200, 100, 96, 96);
         }
         let carl = new Carl(this.scene, 110, 110, 2);
         document.onkeydown = (e) => {
