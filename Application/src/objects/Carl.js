@@ -1,8 +1,8 @@
 
-const Entity = require('./../engine/Entities').Entity;
-class Chicken extends Entity {
-    constructor(scene, x, y, rotation = 0) {
-        super(scene,x, y, 32, 32, rotation, true);
+const entities = require('./../engine/entities');
+class AdvancedEntity extends entities.MovingEntity{
+    constructor(scene, x, y, width, height, rotation = 0) {
+        super(scene,x, y, width, height, rotation, true);
         this.range = 256;
         this.halfRange = this.range / 2;
         this.scene = scene;
@@ -12,9 +12,7 @@ class Chicken extends Entity {
         this.sensor.height = this.range;
         this.sensor.style.border = '1px solid black';
         this.sensor.style.marginLeft = '10px';
-        document.body.appendChild(this.sensor);
-        this.keyframe = 1;
-        this.lastFrame = 0;
+        document.body.appendChild(this.sensor);       
         this.score = 0;
 
     }
@@ -45,40 +43,41 @@ class Chicken extends Entity {
             console.log(err);
         }
     }
-    update(delta) {
+    update(delta){
+        
         if (!this.cnt) {
             this.cnt = 0;
         }
         if (this.cnt++ > 1) {
-            this.score += 5 * this.velocity;
             this.getSensorInput(delta);
-            super.update(delta);
-
-            if (this.lastFrame > 150) {
-                if (this.velocity != 0) {
-                    this.keyframe--;
-                    if (this.keyframe < 0) {
-                        this.keyframe = 2;
-                    }
-                } else {
-                    this.keyframe = 1;
-                }
-                this.lastFrame = 0;
-            }
-            this.lastFrame += delta;
+            super.update(delta);            
         }
-
+        
     }
-    collide(opponent) {
-        //let d = Math.floor(Math.random() * (7 - 0 + 1)) + 0;
-        //this.rotation = d;        
-        this.velocity = 0;
-        //this.score -= 10 * this.velocity;
-        //this.velocity = 0;
-
+    
+}
+class Chicken extends AdvancedEntity{
+    constructor(scene, x, y, rotation = 0) {
+        super(scene,x, y, 32,32,rotation);
+        this.keyframe = 1;
+        this.lastFrame = 0;
     }
-    render(gfx) {
-        gfx.fillCircle(this.mx,this.my,this.width/2, '#00a2e8');       
+    update(delta) {  
+        super.update(delta);      
+        if (this.lastFrame > 150) {
+            if (this.velocity != 0) {
+                this.keyframe--;
+                if (this.keyframe < 0) {
+                    this.keyframe = 2;
+                }
+            } else {
+                this.keyframe = 1;
+            }
+            this.lastFrame = 0;
+        }
+        this.lastFrame += delta;
+    }
+    render(gfx) {              
         let r = this.rotation;
         let ox = 32 * this.keyframe, oy;
         if (r == 0) { oy = 0; }
@@ -93,54 +92,54 @@ class Chicken extends Entity {
     }
 }
 
-const Actions = {
-    NONE: 0,
-    MOVE: 1,
-    LEFT: 2,
-    RIGHT: 3
-};
-class Carl extends Chicken{
+class Pete extends Chicken{
     constructor(scene, x, y, rotation = 0){
-        super(scene,x,y,rotation);
-        this.tx = this.mx;
-        this.ty = this.mx; 
-        this.speed = this.width;   
-        this.stepsize = this.width;  
-        this.action = Actions.NONE;
+        super(scene,x,y,rotation);            
     }
     collide(opponent){
-        super.collide(opponent);  
-        this.stop();              
+        super.collide(opponent);            
+    }   
+    stop(){
+        super.stop();
+        let d = Math.floor(Math.random() * (7 - 0 + 1)) + 0;     
+        this.rotation = d;
+        this.stepsize = Math.floor(Math.random() * (256 - 32 + 1)) + 32;
+        this.move();        
+    }
+}
+class Carl extends Chicken{
+    constructor(scene, x, y, rotation = 0){
+        super(scene,x,y,rotation);        
+    }
+    collide(opponent){
+        super.collide(opponent);         
     }
     stop(){
-        this.tx = this.mx;
-        this.ty = this.my;
-        this.velocity = 0;
+        super.stop();
     }
     move(){        
-        let rot = this.getRotationData();
-        this.tx = this.mx + (rot.dx*this.stepsize);
-        this.ty = this.my + (rot.dy*this.stepsize);
-        this.velocity = this.speed;
+        super.move();
     }
-    turnLeft(){
-        this.stop();        
+    turnLeft(){        
         super.turnLeft();
     }
-    turnRight(){
-        this.stop();
+    turnRight(){        
         super.turnRight();
     }
     changePosition(delta){
-        if(Entity.getDistance(this.mx,this.my,this.tx,this.ty) < 0.25){
-            this.stop();
-        }
         super.changePosition(delta);
+    }
+    render(gfx){
+        gfx.fillCircle(this.mx,this.my,this.width/2, '#00a2e8');
+        super.render(gfx);
     }
 }
 
 
-module.exports = Carl;
+module.exports = {
+    Carl: Carl,
+    Pete: Pete
+}; 
 
 var img = new Image();
 img.onload = function () {
