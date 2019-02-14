@@ -36,17 +36,15 @@ class MainLooper {
             new BEntity(this.scene, 200, 100, 96, 96);
         }
         let carl = new Carl(this.scene, 110, 110, 2);
-        new Pete(this.scene, 110, 60, 0).move();     
-        new Pete(this.scene, 110, 200, 3).move();        
-        new Pete(this.scene, 110, 240, 6).move();        
+        //new Pete(this.scene, 110, 60, 0).move();     
+        //new Pete(this.scene, 110, 200, 3).move();        
+        //new Pete(this.scene, 110, 240, 6).move();        
         document.onkeydown = (e) => {
             e = e || window.event;
-            if (e.keyCode == '38') {
-                // up arrow
+            if (e.keyCode == '38') {                
                 carl.move();
             }
-            else if (e.keyCode == '40') {
-                // down arrow
+            else if (e.keyCode == '40') {                
             }
             else if (e.keyCode == '37') {
                 carl.turnLeft();
