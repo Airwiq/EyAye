@@ -36,9 +36,9 @@ class MainLooper {
             new BEntity(this.scene, 200, 100, 96, 96);
         }
         let carl = new Carl(this.scene, 110, 110, 2);
-        //new Pete(this.scene, 110, 60, 0).move();     
-        //new Pete(this.scene, 110, 200, 3).move();        
-        //new Pete(this.scene, 110, 240, 6).move();        
+        new Pete(this.scene, 110, 60, 0).move();     
+        new Pete(this.scene, 110, 200, 3).move();        
+        new Pete(this.scene, 110, 240, 6).move();        
         document.onkeydown = (e) => {
             e = e || window.event;
             if (e.keyCode == '38') {                
