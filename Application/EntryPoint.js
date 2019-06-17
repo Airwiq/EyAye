@@ -5,7 +5,13 @@ class MainWindow extends Electron.BrowserWindow{
     constructor({file,...settings}){
         super({...{width: 1000, height: 600, show: false, autoHideMenuBar: true}, ...settings});
         this.loadFile(file);    
-        this.webContents.openDevTools();        
+        this.webContents.openDevTools();  
+        Electron.globalShortcut.register('f9', function () {
+            this.reload();
+        }.bind(this));
+        Electron.globalShortcut.register('f5', function () {
+            this.toggleDevTools();
+        }.bind(this));      
         this.once('ready-to-show', ()=>{                        
             this.show();            
         });        
@@ -16,7 +22,7 @@ class MainWindow extends Electron.BrowserWindow{
     Electron.app.commandLine.appendSwitch('js-flags', '--max-old-space-size=4096');
     Electron.app.on('ready', ()=> {
         
-        new MainWindow({file:'./Application/Main.html'});
+        new MainWindow({file:'./Application/SliceParser.html'});
     });
     Electron.app.on('window-all-closed', Electron.app.quit);
 })();
