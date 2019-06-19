@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ext3d.graphics.modles.Entity;
-import ext3d.graphics.modles.Primitive;
+import ext3d.graphics.modles.OldyPrimitive;
 import ext3d.graphics.modles.Renderable;
 import ext3d.graphics.modles.Vertex;
 import javafx.scene.canvas.Canvas;
@@ -29,13 +29,13 @@ public class Renderer extends Canvas{
 			renderables.add(entity.getIsometricRenderable());
 		}
 		for(Renderable rn: renderables){
-			for(Primitive pr : rn.getPrimitives()) {
+			for(OldyPrimitive pr : rn.getPrimitives()) {
 				System.out.println(pr.getPoligons());
 				Color c = Color.rgb(
-						pr.getColor()>>24 & 0xFF,
 						pr.getColor()>>16 & 0xFF,
 						pr.getColor()>>8 & 0xFF,
-						(pr.getColor() & 0xFF)/0xFF
+						pr.getColor() & 0xFF,
+						1f
 				);
 				//gc.setStroke(c);
 				gc.setFill(c);
