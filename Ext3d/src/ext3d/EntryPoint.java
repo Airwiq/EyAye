@@ -23,15 +23,24 @@ public class EntryPoint extends Application {
 		Renderer cvs = new Renderer(WINDOW_WIDTH, WINDOW_HEIGHT);
 		primaryStage.setScene(new Scene(new BorderPane(cvs)));
 		primaryStage.show();
-		Entity E = new Entity(new Vector3f(0,0,0),0,0,0,1) {
+		Entity E = new Entity(new Vector3f(1024,0,512),0,0,0,4f) {
 			@Override
 			public Model getModel() {
 				List<Primitive> p = new ArrayList<>();
-				p.add(new Primitive(1, new Vector3f(512+0,0,0),new Vector3f(512+100,0,0),new Vector3f(512+100,0,100),new Vector3f(512+0,0,100)));
+				float s = 10f;
+				p.add(new Primitive(0xFFFF00FF, new Vector3f(-s,-s,-s),new Vector3f(s,-s,-s),new Vector3f(s,-s,s),new Vector3f(-s,-s,s)));
+				p.add(new Primitive(0xFF0000FF, new Vector3f(-s,-s,-s),new Vector3f(-s,s,-s),new Vector3f(-s,s,s),new Vector3f(-s,-s,s)));
+
+				p.add(new Primitive(0x00FF00FF, new Vector3f(-s,-s,-s),new Vector3f(s,-s,-s),new Vector3f(s,s,-s),new Vector3f(-s,s,-s)));
+				p.add(new Primitive(0xFF00FFFF, new Vector3f(-s,-s,s),new Vector3f(s,-s,s),new Vector3f(s,s,s),new Vector3f(-s,s,s)));
+				p.add(new Primitive(0x00FFFFFF, new Vector3f(s,-s,-s),new Vector3f(s,s,-s),new Vector3f(s,s,s),new Vector3f(s,-s,s)));
+				p.add(new Primitive(0x0000FFFF, new Vector3f(-s,s,-s),new Vector3f(s,s,-s),new Vector3f(s,s,s),new Vector3f(-s,s,s)));
+				//p.add(new Primitive(1, new Vector3f(s,-s,-s),new Vector3f(s,s,-s),new Vector3f(s,s,s),new Vector3f(s,-s,s)));
+
 				return new Model(p);
 			}
 		};
-		cvs.renderIsometric(E);
+		cvs.render(E);
 
 	}
 

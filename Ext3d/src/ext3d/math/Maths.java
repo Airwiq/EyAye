@@ -38,7 +38,7 @@ public class Maths {
 	public static Vector3f calulateIsometric(Vector3f position){
 		return new Vector3f(
 			(position.getX()-position.getZ())*0.5f,
-			((position.getX()+position.getZ())*0.125f)-(position.getY()*0.25f),
+			((position.getX()+position.getZ())*0.125f)-(position.getY()*0.5f),
 			0
 		);
 	}
