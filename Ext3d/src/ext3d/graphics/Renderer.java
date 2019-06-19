@@ -8,7 +8,7 @@ import java.util.List;
 import ext3d.graphics.modles.Entity;
 import ext3d.graphics.modles.Primitive;
 import ext3d.graphics.modles.Renderable;
-import ext3d.math.vectors.Vector3f;
+import ext3d.graphics.modles.Vertex;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -40,7 +40,7 @@ public class Renderer extends Canvas{
 				//gc.setStroke(c);
 				gc.setFill(c);
 				gc.fillPolygon(pr.getXPoints(),pr.getYPoints(),pr.getPoligons().size());
-				for(Vector3f px : pr.getPoligons()){
+				for(Vertex px : pr.getPoligons()){
 
 				}
 				//gc.strokePolygon(pr.getXPoints(),pr.getYPoints(),pr.getPoligons().size());

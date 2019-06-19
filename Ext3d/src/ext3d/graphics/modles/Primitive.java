@@ -3,26 +3,29 @@ package ext3d.graphics.modles;
 import java.util.Arrays;
 import java.util.List;
 
-import ext3d.math.vectors.Vector3f;
-
 
 public class Primitive {
-	protected List<Vector3f> poligons;
+	protected List<Vertex> poligons;
+	protected Vertex a;
+	protected Vertex b;
+	protected Vertex c;
+	protected Vertex d;
+	
 	protected int color;
 
-	public Primitive(int color, List<Vector3f> poligons){
+	public Primitive(int color, List<Vertex> poligons){
 		this.color = color;
 		this.poligons = poligons;
 	}
-	public Primitive(int color, Vector3f... polygons){
+	public Primitive(int color, Vertex... polygons){
 		this(color,Arrays.asList(polygons));
 	}
 
-	public List<Vector3f> getPoligons() {
+	public List<Vertex> getPoligons() {
 		return poligons;
 	}
 
-	public void setPoligons(List<Vector3f> poligons) {
+	public void setPoligons(List<Vertex> poligons) {
 		this.poligons = poligons;
 	}
 

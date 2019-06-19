@@ -80,11 +80,11 @@ public abstract class Entity {
 	public Renderable getIsometricRenderable(){
 		List<Primitive> primitives = new ArrayList<>();
 		for(Primitive p : getModel().getPrimitives()){
-			List<Vector3f> polygons = new ArrayList<>();
-			for(Vector3f polygon: p.getPoligons()) {
-				Matrix4f m = Maths.createTransformationMatrix(new Vector3f(0,0,0), getRotX(), getRotY(), getRotZ(), getScale());
+			List<Vertex> polygons = new ArrayList<>();
+			for(Vertex polygon: p.getPoligons()) {
+				Matrix4f m = Maths.createTransformationMatrix(new Vertex(0,0,0), getRotX(), getRotY(), getRotZ(), getScale());
 				Vector4f vf = Matrix4f.transform(m,new Vector4f(polygon,1),null);
-				polygons.add(Maths.calulateIsometric(Vector3f.add(getPosition(),new Vector3f(vf),null)));
+				polygons.add(new Vertex(Maths.calulateIsometric(Vector3f.add(getPosition(),new Vertex(vf),null))));
 			}
 			primitives.add(new Primitive(p.getColor(),polygons));
 		}
