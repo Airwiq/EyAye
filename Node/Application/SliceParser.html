@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Main</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./res/img/rgby.png" style="display: none">
+    <canvas id="cvs" width="100%" height="100%"></canvas>
+</body>
+<script>
+        
+</script>
+<script>
+    function cYaw(x, y, z, a) {
+        let R = (a * 180) / Math.PI;
+
+        let nx = (Math.cos(R) * x) + (0 * x) + (Math.sin(R));
+        let ny = (0 * y) + (1 * y) + (0 * y);
+        let nz = (-Math.sin(R) * z) + (0 * z) + (Math.cos(R) * z);
+        let r = [nx, ny, nz];
+        console.log(r);
+        return r;
+    }
+    function cYawX(x, a) {
+        let R = (a * 180) / Math.PI;
+        return (Math.cos(R) * x) + (0 * x) + (Math.sin(R));
+    }
+    function cYawY(y, a) {
+        //let R = (a * 180) / Math.PI;
+        return (0 * y) + (1 * y) + (0 * y);
+    }
+    function cYawZ(z, a) {
+        let R = (a * 180) / Math.PI;
+        return (-Math.sin(R) * z) + (0 * z) + (Math.cos(R) * z);
+    }
+</script>
+<script>
+    const IMX = { w: 15, h: 15, d: 15 };
+    var DATA = null;
+    var img = new Image();
+    img.onload = function () {
+        let cvs = document.createElement('canvas');
+        cvs.width = img.width;
+        cvs.height = img.height;
+        let c = cvs.getContext('2d');
+        c.drawImage(img, 0, 0);
+        DATA = [];
+        for (let i = 0; i < IMX.h; i++) {
+            let mX = 0;
+            let mY = (i) * IMX.h;
+            for (let y = 0; y < IMX.d; y++) {
+                for (let x = 0; x < IMX.w; x++) {
+                    let col = c.getImageData(mX + x, mY + y, 1, 1).data;
+                    if (col[3] > 0) {
+                        DATA.push({
+                            X: x,
+                            Y: i,
+                            Z: y,
+                            C: col
+                        });
+                    }
+                }
+            }
+            //document.getElementById('cvs').getContext('2d').drawImage(img,0, i*IMX.h, IMX.w, IMX.d,0,0,512,512);
+        }
+        run();
+    }
+    img.src = './res/img/cube.png';
+    function cX(x, y, z) {
+
+        return (x - z) * (1 / 2);
+    }
+    function cY(y) {
+
+        return y * (1/2);
+    }
+    function cZ(x, y, z) {
+
+        return (x + z) * (1/4) - cY(y);
+    }
+    function drawPlane(cvs, tw, th, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, col) {
+        let shd = 0;
+        cvs.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${col[3]})`;
+        cvs.strokeStyle = `rgba(${col[0] + shd},${col[1] + shd},${col[2] + shd},${col[3]})`;
+        cvs.lineWidth = 0.5;
+        cvs.beginPath();
+        cvs.moveTo(cX(x1+tw, y1+tw, z1+tw), cZ(x1+tw, y1+tw, z1+tw));
+        cvs.lineTo(cX(x2+tw, y2+tw, z2+tw), cZ(x2+tw, y2+tw, z2+tw));
+        cvs.lineTo(cX(x3+tw, y3+tw, z3+tw), cZ(x3+tw, y3+tw, z3+tw));
+        cvs.lineTo(cX(x4+tw, y4+tw, z4+tw), cZ(x4+tw, y4+tw, z4+tw));
+        cvs.closePath();
+        cvs.fill();
+        cvs.stroke();
+    }
+    function drawPlaneY(cvs, s, tw, th, x, y, z, col) {
+        // drawPlane(cvs, tw, th,
+        //     cYawX(x - s, yaw), cYawY(y, yaw), cYawZ(z - s, yaw),
+        //     cYawX(x + s, yaw), cYawY(y, yaw), cYawZ(z - s, yaw),
+        //     cYawX(x + s, yaw), cYawY(y, yaw), cYawZ(z + s, yaw),
+        //     cYawX(x - s, yaw), cYawY(y, yaw), cYawZ(z + s, yaw),
+        //     col
+        // );
+        drawPlane(cvs, tw, th,
+            x - s, y, z - s,
+            x + s, y, z - s,
+            x + s, y, z + s,
+            x - s, y, z + s,
+            col
+        );
+    }
+    function drawPlaneX(cvs, s, tw, th, x, y, z, col) {
+        drawPlane(cvs, tw, th,
+            x, y - s, z - s,
+            x, y + s, z - s,
+            x, y + s, z + s,
+            x, y - s, z + s,
+            col
+        );
+    }
+    function drawPlaneZ(cvs, s, tw, th, x, y, z, col) {
+        drawPlane(cvs, tw, th,
+            x - s, y - s, z,
+            x + s, y - s, z,
+            x + s, y + s, z,
+            x - s, y + s, z,
+            col
+        );
+    }
+    function drawCube(cvs, s, tw, th, x, y, z, col) {
+        let sdh = 24;
+
+        drawPlaneY(cvs, s, tw, th, x, y - s, z, col);
+        drawPlaneX(cvs, s, tw, th, x - s, y, z, col);
+        drawPlaneZ(cvs, s, tw, th, x, y, z - s, col);
+        drawPlaneX(cvs, s, tw, th, x + s, y, z, [col[0] - sdh, col[1] - sdh, col[2] - sdh, col[3]]);
+        drawPlaneZ(cvs, s, tw, th, x, y, z + s, [col[0] - sdh, col[1] - sdh, col[2] - sdh, col[3]]);
+        drawPlaneY(cvs, s, tw, th, x, y + s, z, col);
+    }
+</script>
+<script>
+    function run() {
+        let tw = -150;
+        let th = 1;
+        let canvas = document.getElementById('cvs');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let c = canvas.getContext('2d');
+        c.translate(window.innerWidth / 2, window.innerHeight / 2);
+        for (let i = 0, v; v = DATA[i]; i++) {
+            drawCube(c, 100, tw, th, v.X, v.Y, v.Z, v.C);
+        }
+        
+    }
+</script>
+
+
+</html>

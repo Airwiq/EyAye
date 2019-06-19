@@ -6,20 +6,50 @@
     <title>Main</title>
     <style>
         html,
-        body {}
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
 
         canvas {
-            border: 1px solid black;
+            position: absolute;
+            top: 0px;
+            left: 0px;
         }
     </style>
 </head>
 
 <body>
     <img src="./res/img/rgby.png" style="display: none">
-    <canvas id="cvs" width="1024" height="1024"></canvas>
+    <canvas id="cvs" width="100%" height="100%"></canvas>
 </body>
 <script>
-    const IMX = { w: 15, h: 15, d: 15 };    
+    function cYaw(x, y, z, a) {
+        let R = (a * 180) / Math.PI;
+
+        let nx = (Math.cos(R) * x) + (0 * x) + (Math.sin(R));
+        let ny = (0 * y) + (1 * y) + (0 * y);
+        let nz = (-Math.sin(R) * z) + (0 * z) + (Math.cos(R) * z);
+        let r = [nx, ny, nz];
+        console.log(r);
+        return r;
+    }
+    function cYawX(x, a) {
+        let R = (a * 180) / Math.PI;
+        return (Math.cos(R) * x) + (0 * x) + (Math.sin(R));
+    }
+    function cYawY(y, a) {
+        //let R = (a * 180) / Math.PI;
+        return (0 * y) + (1 * y) + (0 * y);
+    }
+    function cYawZ(z, a) {
+        let R = (a * 180) / Math.PI;
+        return (-Math.sin(R) * z) + (0 * z) + (Math.cos(R) * z);
+    }
+</script>
+<script>
+    const IMX = { w: 15, h: 15, d: 15 };
     var DATA = null;
     var img = new Image();
     img.onload = function () {
@@ -51,18 +81,21 @@
     }
     img.src = './res/img/cube.png';
     function cX(x, y, z, t) {
+
         return (x - z) * (t / 2);
     }
     function cY(y, t) {
+
         return y * (t);
     }
     function cZ(x, y, z, t) {
+
         return (x + z) * (t / 2) - cY(y, t);
     }
     function drawPlane(cvs, tw, th, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, col) {
         let shd = 0;
         cvs.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${col[3]})`;
-        cvs.strokeStyle = `rgba(${col[0]+shd},${col[1]+shd},${col[2]+shd},${col[3]})`;
+        cvs.strokeStyle = `rgba(${col[0] + shd},${col[1] + shd},${col[2] + shd},${col[3]})`;
         cvs.lineWidth = 0.5;
         cvs.beginPath();
         cvs.moveTo(cX(x1, y1, z1, tw), cZ(x1, y1, z1, th));
@@ -74,6 +107,13 @@
         cvs.stroke();
     }
     function drawPlaneY(cvs, s, tw, th, x, y, z, col) {
+        // drawPlane(cvs, tw, th,
+        //     cYawX(x - s, yaw), cYawY(y, yaw), cYawZ(z - s, yaw),
+        //     cYawX(x + s, yaw), cYawY(y, yaw), cYawZ(z - s, yaw),
+        //     cYawX(x + s, yaw), cYawY(y, yaw), cYawZ(z + s, yaw),
+        //     cYawX(x - s, yaw), cYawY(y, yaw), cYawZ(z + s, yaw),
+        //     col
+        // );
         drawPlane(cvs, tw, th,
             x - s, y, z - s,
             x + s, y, z - s,
@@ -106,8 +146,8 @@
         drawPlaneY(cvs, s, tw, th, x, y - s, z, col);
         drawPlaneX(cvs, s, tw, th, x - s, y, z, col);
         drawPlaneZ(cvs, s, tw, th, x, y, z - s, col);
-        drawPlaneX(cvs, s, tw, th, x + s, y, z, [col[0]-sdh,col[1]-sdh,col[2]-sdh,col[3]]);
-        drawPlaneZ(cvs, s, tw, th, x, y, z + s, [col[0]-sdh,col[1]-sdh,col[2]-sdh,col[3]]);
+        drawPlaneX(cvs, s, tw, th, x + s, y, z, [col[0] - sdh, col[1] - sdh, col[2] - sdh, col[3]]);
+        drawPlaneZ(cvs, s, tw, th, x, y, z + s, [col[0] - sdh, col[1] - sdh, col[2] - sdh, col[3]]);
         drawPlaneY(cvs, s, tw, th, x, y + s, z, col);
     }
 </script>
@@ -115,15 +155,16 @@
     function run() {
         let tw = 8;
         let th = 4;
-
-        let c = document.getElementById('cvs').getContext('2d');
-        c.translate(512,512);
-        for (let i = 0, v; v = DATA[i]; i++) {
-            
-            drawCube(c, 0.5, tw, th, v.X+100, v.Y, v.Z, v.C);
-        }
-
-
+        let canvas = document.getElementById('cvs');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let c = canvas.getContext('2d');
+        c.translate(window.innerWidth / 2, window.innerHeight / 2);
+        //for (let i = 0, v; v = DATA[i]; i++) {
+        //    drawCube(c, 0.5, tw, th, v.X + 100, v.Y, v.Z, v.C);
+        //}
+        drawPlaneY(c, 10, tw, th, 50, 50, 0, [128, 0, 0, 255]);
+        cYaw(0,0,0,45);
     }
 </script>
 

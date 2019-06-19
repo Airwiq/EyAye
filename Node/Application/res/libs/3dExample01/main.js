@@ -88,8 +88,9 @@ function render(objects, ctx, dx, dy) {
 
     // Create the cube
     var cube_center = new Vertex(0, 11*dy/10, 0);
-    var cube = new Cube(cube_center, dy);
-    var objects = [cube];
+    var cube = new Cube(new Vertex(0, 11*dy/10, 0), dy);
+    var cube2 = new Cube(new Vertex(100, 11*dy/10, -100), dy-100);
+    var objects = [cube, cube2];
 
     // First render
     render(objects, ctx, dx, dy);
