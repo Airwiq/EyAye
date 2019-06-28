@@ -97,11 +97,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JFX3d_Perfect.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JFX3d_Perfect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ext3d/JFX3d_Perfect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="116" column="55" selection-start-line="116" selection-start-column="55" selection-end-line="116" selection-end-column="55" />
+            <state relative-caret-position="147">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Person.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ext3d/entities/Person.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -168,6 +178,8 @@
         <option value="$PROJECT_DIR$/src/ext3d/JFX3d_Iso02.java" />
         <option value="$PROJECT_DIR$/src/ext3d/JFX3d_Iso01.java" />
         <option value="$PROJECT_DIR$/src/ext3d/JFX3d_Perfect.java" />
+        <option value="$PROJECT_DIR$/src/ext3d/models/Person.java" />
+        <option value="$PROJECT_DIR$/src/ext3d/entities/Person.java" />
       </list>
     </option>
   </component>
@@ -208,6 +220,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -286,14 +300,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="magicavoxel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ext3d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ext3d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ext3d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ext3d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ext3d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ext3d" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ext3d" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -729,8 +791,8 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -739,12 +801,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1920" y="23" width="1920" height="1017" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1920" y="23" width="1920" height="1017" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13539445" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13539445" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -785,7 +847,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ext3d/math/vectors/ReadableVector.java" />
     <entry file="file://$PROJECT_DIR$/src/ext3d/math/vectors/WritableVector2f.java" />
     <entry file="file://$PROJECT_DIR$/src/ext3d/math/vectors/WritableVector3f.java" />
     <entry file="file://$PROJECT_DIR$/src/ext3d/math/vectors/ReadableVector2f.java" />
@@ -800,224 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="164" column="21" selection-start-line="164" selection-start-column="21" selection-end-line="164" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKER_BRIGHTER_FACTOR#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SATURATE_DESATURATE_FACTOR#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#color#0;class#Color#0" expanded="false" />
-            <element signature="method#color#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#color#1;class#Color#0" expanded="false" />
-            <element signature="method#color#1;class#Color#0" expanded="false" />
-            <element signature="docComment;method#rgb#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#rgb#1;class#Color#0" expanded="false" />
-            <element signature="method#rgb#1;class#Color#0" expanded="false" />
-            <element signature="docComment;method#grayRgb#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#grayRgb#1;class#Color#0" expanded="false" />
-            <element signature="docComment;method#gray#0;class#Color#0" expanded="false" />
-            <element signature="method#gray#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#gray#1;class#Color#0" expanded="false" />
-            <element signature="method#checkRGB#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#hsb#0;class#Color#0" expanded="false" />
-            <element signature="method#hsb#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#hsb#1;class#Color#0" expanded="false" />
-            <element signature="method#hsb#1;class#Color#0" expanded="false" />
-            <element signature="method#checkSB#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#web#0;class#Color#0" expanded="false" />
-            <element signature="method#web#0;class#Color#0" expanded="false" />
-            <element signature="method#parseRGBColor#0;class#Color#0" expanded="false" />
-            <element signature="method#parseHSLColor#0;class#Color#0" expanded="false" />
-            <element signature="method#parseComponent#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#web#1;class#Color#0" expanded="false" />
-            <element signature="docComment;method#valueOf#0;class#Color#0" expanded="false" />
-            <element signature="method#valueOf#0;class#Color#0" expanded="false" />
-            <element signature="method#to32BitInteger#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#getHue#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#getSaturation#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#getBrightness#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#deriveColor#0;class#Color#0" expanded="false" />
-            <element signature="method#deriveColor#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#brighter#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#darker#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#saturate#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#desaturate#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#grayscale#0;class#Color#0" expanded="false" />
-            <element signature="method#grayscale#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#invert#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#TRANSPARENT#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#ALICEBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#ANTIQUEWHITE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#AQUA#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#AQUAMARINE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#AZURE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BEIGE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BISQUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BLACK#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BLANCHEDALMOND#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BLUEVIOLET#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BROWN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#BURLYWOOD#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CADETBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CHARTREUSE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CHOCOLATE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CORAL#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CORNFLOWERBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CORNSILK#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CRIMSON#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#CYAN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKCYAN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKGOLDENROD#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKGRAY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKGREY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKKHAKI#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKMAGENTA#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKOLIVEGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKORANGE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKORCHID#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKRED#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKSALMON#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKSEAGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKSLATEBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKSLATEGRAY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKSLATEGREY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKTURQUOISE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DARKVIOLET#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DEEPPINK#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DEEPSKYBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DIMGRAY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DIMGREY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#DODGERBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#FIREBRICK#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#FLORALWHITE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#FORESTGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#FUCHSIA#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GAINSBORO#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GHOSTWHITE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GOLD#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GOLDENROD#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GRAY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GREENYELLOW#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#GREY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#HONEYDEW#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#HOTPINK#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#INDIANRED#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#INDIGO#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#IVORY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#KHAKI#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LAVENDER#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LAVENDERBLUSH#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LAWNGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LEMONCHIFFON#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTCORAL#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTCYAN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTGOLDENRODYELLOW#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTGRAY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTGREY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTPINK#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTSALMON#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTSEAGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTSKYBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTSLATEGRAY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTSLATEGREY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTSTEELBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIGHTYELLOW#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIME#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LIMEGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#LINEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MAGENTA#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MAROON#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMAQUAMARINE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMORCHID#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMPURPLE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMSEAGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMSLATEBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMSPRINGGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMTURQUOISE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MEDIUMVIOLETRED#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MIDNIGHTBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MINTCREAM#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MISTYROSE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#MOCCASIN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#NAVAJOWHITE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#NAVY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#OLDLACE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#OLIVE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#OLIVEDRAB#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#ORANGE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#ORANGERED#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#ORCHID#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PALEGOLDENROD#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PALEGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PALETURQUOISE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PALEVIOLETRED#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PAPAYAWHIP#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PEACHPUFF#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PERU#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PINK#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PLUM#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#POWDERBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#PURPLE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#RED#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#ROSYBROWN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#ROYALBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SADDLEBROWN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SALMON#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SANDYBROWN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SEAGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SEASHELL#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SIENNA#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SILVER#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SKYBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SLATEBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SLATEGRAY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SLATEGREY#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SNOW#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#SPRINGGREEN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#STEELBLUE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#TAN#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#TEAL#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#THISTLE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#TOMATO#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#TURQUOISE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#VIOLET#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#WHEAT#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#WHITE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#WHITESMOKE#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#YELLOW#0;class#Color#0" expanded="false" />
-            <element signature="docComment;field#YELLOWGREEN#0;class#Color#0" expanded="false" />
-            <element signature="class#NamedColors#0;class#Color#0" expanded="false" />
-            <element signature="method#NamedColors#0;class#NamedColors#0;class#Color#0" expanded="false" />
-            <element signature="method#createNamedColors#0;class#NamedColors#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#getRed#0;class#Color#0" expanded="false" />
-            <element signature="method#getRed#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#getGreen#0;class#Color#0" expanded="false" />
-            <element signature="method#getGreen#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#getBlue#0;class#Color#0" expanded="false" />
-            <element signature="method#getBlue#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#getOpacity#0;class#Color#0" expanded="false" />
-            <element signature="method#getOpacity#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#isOpaque#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#Color#0;class#Color#0" expanded="false" />
-            <element signature="method#Color#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#Color#1;class#Color#0" expanded="false" />
-            <element signature="method#Color#1;class#Color#0" expanded="false" />
-            <element signature="method#acc_getPlatformPaint#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#interpolate#0;class#Color#0" expanded="false" />
-            <element signature="method#interpolate#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#equals#0;class#Color#0" expanded="false" />
-            <element signature="method#equals#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#hashCode#0;class#Color#0" expanded="false" />
-            <element signature="method#hashCode#0;class#Color#0" expanded="false" />
-            <element signature="docComment;method#toString#0;class#Color#0" expanded="false" />
-            <element signature="method#toString#0;class#Color#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1079,10 +922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
-          <folding>
-            <element signature="e#1234#1235#0" expanded="false" />
-            <element signature="e#1296#1297#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1110,60 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="776">
           <caret line="519" column="5" selection-start-line="106" selection-start-column="4" selection-end-line="519" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#Camera#0" expanded="false" />
-            <element signature="method#getFarClipInScene#0;class#Camera#0" expanded="false" />
-            <element signature="method#getNearClipInScene#0;class#Camera#0" expanded="false" />
-            <element signature="method#updateClipPlane#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;field#sceneToLocalTx#0;class#Camera#0" expanded="false" />
-            <element signature="method#getSceneToLocalTransform#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;field#nearClip#0;class#Camera#0" expanded="false" />
-            <element signature="method#nearClipProperty#0;class#Camera#0" expanded="false" />
-            <element signature="class#6747:7009" expanded="false" />
-            <element signature="method#invalidated#0;class#6747:7009" expanded="false" />
-            <element signature="docComment;field#farClip#0;class#Camera#0" expanded="false" />
-            <element signature="method#farClipProperty#0;class#Camera#0" expanded="false" />
-            <element signature="class#7887:8150" expanded="false" />
-            <element signature="method#invalidated#0;class#7887:8150" expanded="false" />
-            <element signature="docComment;method#impl_updatePeer#0;class#Camera#0" expanded="false" />
-            <element signature="e#8422#8433#0" expanded="false" />
-            <element signature="method#impl_updatePeer#0;class#Camera#0" expanded="false" />
-            <element signature="e#8959#9017#0" expanded="false" />
-            <element signature="method#setViewWidth#0;class#Camera#0" expanded="false" />
-            <element signature="method#setViewHeight#0;class#Camera#0" expanded="false" />
-            <element signature="method#setOwnerScene#0;class#Camera#0" expanded="false" />
-            <element signature="method#setOwnerSubScene#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#impl_markDirty#0;class#Camera#0" expanded="false" />
-            <element signature="e#10810#10821#0" expanded="false" />
-            <element signature="method#impl_markDirty#0;class#Camera#0" expanded="false" />
-            <element signature="method#markOwnerDirty#0;class#Camera#0" expanded="false" />
-            <element signature="e#11324#11394#0" expanded="false" />
-            <element signature="docComment;method#getCameraTransform#0;class#Camera#0" expanded="false" />
-            <element signature="method#getCameraTransform#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#getProjViewTransform#0;class#Camera#0" expanded="false" />
-            <element signature="method#getProjViewTransform#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#project#0;class#Camera#0" expanded="false" />
-            <element signature="method#project#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#pickNodeXYPlane#0;class#Camera#0" expanded="false" />
-            <element signature="method#pickNodeXYPlane#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#pickProjectPlane#0;class#Camera#0" expanded="false" />
-            <element signature="method#pickProjectPlane#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#computePickRay#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#computePosition#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#impl_computeGeomBounds#0;class#Camera#0" expanded="false" />
-            <element signature="e#15678#15689#0" expanded="false" />
-            <element signature="method#impl_computeGeomBounds#0;class#Camera#0" expanded="false" />
-            <element signature="docComment;method#impl_computeContains#0;class#Camera#0" expanded="false" />
-            <element signature="e#16020#16031#0" expanded="false" />
-            <element signature="docComment;method#impl_processMXNode#0;class#Camera#0" expanded="false" />
-            <element signature="e#16327#16338#0" expanded="false" />
-            <element signature="method#impl_processMXNode#0;class#Camera#0" expanded="false" />
-            <element signature="e#16542#16607#0" expanded="false" />
-            <element signature="class#16700:17242" expanded="false" />
-            <element signature="method#pickNodeXYPlane#0;class#16700:17242" expanded="false" />
-            <element signature="method#pickProjectPlane#0;class#16700:17242" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1182,7 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-261">
           <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1225,7 +1009,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1233,14 +1016,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ext3d/JFX3d_Perfect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="116" column="55" selection-start-line="116" selection-start-column="55" selection-end-line="116" selection-end-column="55" />
+        <state relative-caret-position="147">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ext3d/entities/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>

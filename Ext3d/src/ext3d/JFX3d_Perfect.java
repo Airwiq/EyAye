@@ -25,10 +25,10 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 public class JFX3d_Perfect extends Application {
-	private static final int SCALE = 5;
+	private static final int SCALE = 4;
 	private static final int WIDTH = 128*SCALE;
 	private static final int HEIGHT = 128*SCALE;
-	private static final int VOXEL_SIZE = 3*SCALE;
+	private static final int VOXEL_SIZE = 4*SCALE;
 
 	public int R = 0;
 	@Override
