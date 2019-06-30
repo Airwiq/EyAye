@@ -7,7 +7,10 @@ import ext3d.entities.Person;
 
 
 public class BasicModel implements Person.SlicedModel{
-
+	@Override
+	public int getCellHeight() {
+		return 32;
+	}
 	@Override
 	public URL getHead() {
 		return this.getClass().getResource("basic_expo-Head.png");
