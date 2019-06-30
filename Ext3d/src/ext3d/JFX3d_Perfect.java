@@ -34,10 +34,6 @@ public class JFX3d_Perfect extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 
-
-
-
-
 		ParallelCamera camera = new ParallelCamera();
 		Group lights = new Group();
 		PointLight light = new PointLight();
